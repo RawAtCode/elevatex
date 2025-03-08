@@ -1,25 +1,7 @@
 import React from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  ArrowRight,
-  Trophy,
-  Target,
-  Sparkles,
-  CheckCircle2,
-} from "lucide-react";
 import HeroSection from "@/components/hero";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import Image from "next/image";
 import { features } from "@/data/features";
-import { testimonial } from "@/data/testimonial";
-import { faqs } from "@/data/faqs";
 import { howItWorks } from "@/data/howItWorks";
 
 
@@ -56,31 +38,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
-      {/* Stats Section */}
-      {/* <section className="w-full py-12 md:py-24 bg-muted/50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
-            <div className="flex flex-col items-center justify-center space-y-2">
-              <h3 className="text-4xl font-bold">50+</h3>
-              <p className="text-muted-foreground">Industries Covered</p>
-            </div>
-            <div className="flex flex-col items-center justify-center space-y-2">
-              <h3 className="text-4xl font-bold">1000+</h3>
-              <p className="text-muted-foreground">Interview Questions</p>
-            </div>
-            <div className="flex flex-col items-center justify-center space-y-2">
-              <h3 className="text-4xl font-bold">95%</h3>
-              <p className="text-muted-foreground">Success Rate</p>
-            </div>
-            <div className="flex flex-col items-center justify-center space-y-2">
-              <h3 className="text-4xl font-bold">24/7</h3>
-              <p className="text-muted-foreground">AI Support</p>
-            </div>
-          </div>
-        </div>
-      </section> */}
 
       {/* How It Works Section */}
       <section className="w-full py-12 md:py-24 bg-background">

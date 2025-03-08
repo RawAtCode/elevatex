@@ -1,25 +1,27 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { ChartNoAxesCombined, ChevronDown, FileTextIcon, GraduationCap, PenBox, Send, StarsIcon } from "lucide-react";
+import { ChartNoAxesCombined, FileTextIcon, GraduationCap, PenBox, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+    NavigationMenu,
+    NavigationMenuItem,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+    NavigationMenuContent,
+    NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
 import { checkUser } from "@/lib/checkUser";
-// import { ModeToggle } from "@/components/mode-toggle";
-
 
 const Header = async () => {
-    await checkUser();
+    const userId = await checkUser();
 
     return (
         <header className="fixed top-0 w-full border-b bg-background/80 backdrop-blur-md z-50 supports-[backdrop-filter]:bg-background/60">
             <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-                <Link href="/" className="flex items-center space-x-2">
+                
+                {/* LOGO */}
+                <Link href={userId ? "/dashboard" : "/"} className="flex items-center space-x-2">
                     <Image
                         src={"/main-logo.png"}
                         alt="Logo"
@@ -30,81 +32,63 @@ const Header = async () => {
                     <span className="text-xl font-bold tracking-wide">ElevateX</span>
                 </Link>
 
-                <div className="flex items-center space-x-2 md:space-x-4">
+                {/* NAVIGATION & PROFILE */}
+                <div className="flex items-center space-x-6">
                     <SignedIn>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button>
-                                    <StarsIcon className="h-4 w-4" />
-                                    <span className="hidden md:block">Features</span>
-                                    <ChevronDown className="h-4 w-4" />
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                <DropdownMenuItem>
-                                    <Link href={"/dashboard"} className="flex items-center gap-2">
-                                        <ChartNoAxesCombined className="h-4 w-4" />
-                                        <span>Trending Insights</span>
-                                    </Link>
-                                </DropdownMenuItem>
-
-                                <DropdownMenuItem>
-                                    <Link href={"/interview"} className="flex items-center gap-2">
-                                        <GraduationCap className="h-4 w-4" />
-                                        <span>Interview Prep</span>
-                                    </Link>
-                                </DropdownMenuItem>
-
-                                <DropdownMenuItem>
-                                    <Link href={"/resume"} className="flex items-center gap-2">
-                                        <FileTextIcon className="h-4 w-4" />
-                                        <span>Build Resume</span>
-                                    </Link>
-                                </DropdownMenuItem>
-
-                                <DropdownMenuItem>
-                                    <Link href={"/cover-letter"} className="flex items-center gap-2">
-                                        <PenBox className="h-4 w-4" />
-                                        <span>Cover Letter</span>
-                                    </Link>
-                                </DropdownMenuItem>
-
-                                <DropdownMenuItem>
-                                    <Link href={"/referral"} className="flex items-center gap-2">
-                                        <Send className="h-4 w-4" />
-                                        <span>Referrals</span>
-                                    </Link>
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                        <NavigationMenu>
+                            <NavigationMenuList>
+                                <NavigationMenuItem>
+                                    <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium">
+                                        Features
+                                    </NavigationMenuTrigger>
+                                    <NavigationMenuContent className="w-56 p-2 bg-background shadow-md rounded-md">
+                                        <ul className="space-y-1">
+                                            {[
+                                                { href: "/dashboard", icon: ChartNoAxesCombined, label: "Trending Insights" },
+                                                { href: "/interview", icon: GraduationCap, label: "Interview Prep" },
+                                                { href: "/resume", icon: FileTextIcon, label: "Build Resume" },
+                                                { href: "/ai-cover-letter", icon: PenBox, label: "Cover Letter" },
+                                                { href: "/referral", icon: Send, label: "Job Referrals" },
+                                            ].map(({ href, icon: Icon, label }) => (
+                                                <li key={href}>
+                                                    <Link href={href} passHref legacyBehavior>
+                                                        <NavigationMenuLink className="flex items-center gap-3 px-4 py-2 rounded-md hover:bg-gray-100 transition text-muted-foreground">
+                                                            <Icon className="h-5 w-5 text-gray-500" />
+                                                            <span className="font-medium">{label}</span>
+                                                        </NavigationMenuLink>
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </NavigationMenuContent>
+                                </NavigationMenuItem>
+                            </NavigationMenuList>
+                        </NavigationMenu>
                     </SignedIn>
 
-
+                    {/* AUTH BUTTONS */}
                     <SignedOut>
                         <SignInButton>
                             <Button variant="outline">Sign In</Button>
                         </SignInButton>
                     </SignedOut>
 
-
                     <SignedIn>
-                        <UserButton appearance={{
-                            elements: {
-                                avatarBox: "w-10 h-10",
-                                userButtonPopoverCard: "shadow-x1",
-                                userPreviewMainIdentifier: "font-semibold",
-                            },
-                        }}
+                        <UserButton 
+                            appearance={{
+                                elements: {
+                                    avatarBox: "w-10 h-10",
+                                    userButtonPopoverCard: "shadow-xl",
+                                    userPreviewMainIdentifier: "font-semibold",
+                                },
+                            }}
                             afterSignOutUrl="/"
                         />
                     </SignedIn>
-
-                    {/* <ModeToggle /> */}
                 </div>
             </nav>
-
         </header>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;
