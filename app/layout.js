@@ -7,6 +7,7 @@ import { dark } from "@clerk/themes";
 import { Toaster } from "sonner";
 import { Github, Twitter } from "lucide-react";
 import Link from "next/link";
+import Loader from "@/components/ui/loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
         <body
           className={`${inter.className}`}
         >
+          <Loader />
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
