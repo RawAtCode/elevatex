@@ -70,3 +70,14 @@ export const coverLetterSchema = z.object({
   jobTitle: z.string().min(1, "Job title is required"),
   jobDescription: z.string().min(1, "Job description is required"),
 });
+
+
+export const referralSchema = z.object({
+  candidateName: z.string().min(2, "Candidate name is required"),
+  jobTitle: z.string().min(2, "Job role is required"),
+  company: z.string().min(2, "Company name is required"),
+  relationship: z.string().min(2, "Relationship with candidate is required"),
+  skills: z.array(z.string()).optional(),
+  experience: z.number().optional(),
+  achievements: z.string().optional(),
+});

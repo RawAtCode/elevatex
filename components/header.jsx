@@ -82,7 +82,7 @@ const Header = async () => {
                                     userPreviewMainIdentifier: "font-semibold",
                                 },
                             }}
-                            afterSignOutUrl="/"
+                            fallbackRedirectUrl="/"
                         />
                     </SignedIn>
                 </div>
