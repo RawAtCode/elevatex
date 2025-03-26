@@ -17,7 +17,7 @@ const HeroSection = () => {
             </div>
 
             <div className="flex justify-center space-x-4">
-                <Link href='/sign-in'>
+                <Link href='/sign-up'>
                     <Button size="lg" className="px-8">Get Started</Button>
                 </Link>
             </div>
