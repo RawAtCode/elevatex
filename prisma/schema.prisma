@@ -27,7 +27,6 @@ model User {
   assessments   Assessment[]
   resume        Resume?
   coverLetter   CoverLetter[]
-  referrals     Referral[]
 }
 
 model Assessment {
@@ -98,17 +97,3 @@ model IndustryInsight {
 
   @@index([industry])
 }
-
-model Referral {
-  id        String   @id @default(uuid())
-  userId    String   
-  user      User     @relation(fields: [userId], references: [id])
-  company   String
-  referrer  String
-  jobTitle  String
-  message   String
-  createdAt DateTime @default(now())
-
-  @@index([userId])
-}
-

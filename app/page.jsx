@@ -7,7 +7,7 @@ import { howItWorks } from "@/data/howItWorks";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <div className="grid-background"></div>
 
       {/* Hero Section */}
@@ -65,6 +65,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

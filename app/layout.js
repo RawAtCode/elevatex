@@ -5,7 +5,6 @@ import Header from "../components/header";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Toaster } from "sonner";
-import { Github, Twitter } from "lucide-react";
 import Link from "next/link";
 import Loader from "@/components/ui/loader";
 
@@ -13,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "ElevateX",
-  description: "Developed by @RawAtCode.",
+  description: "Developed by RawAtCode.",
 };
 
 export default function RootLayout({ children }) {
@@ -55,9 +54,7 @@ export default function RootLayout({ children }) {
                 </p>
               </div>
             </footer>
-
           </ThemeProvider>
-
         </body>
       </html>
     </ClerkProvider>
